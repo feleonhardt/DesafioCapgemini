@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Anúncio</title>
+</head>
+<body>
+    <div>
+        <a href="home.php">Voltar</a>
+        <h1>Adicionar Anúncio</h1>
+        <form action="home.php" method="post">
+            Nome do Anúncio:
+            <input type="text" name="nomeAnuncio" id="nomeAnuncio" required><br>
+            Nome do cliente:
+            <input type="text" name="nomeCliente" id="nomeCliente" required><br>
+            Data de Início:
+            <input type="date" name="dataInicio" id="dataInicio" required><br>
+            Data de Fim:
+            <input type="date" name="dataFim" id="dataFim" required><br>
+            Investimento por dia (R$):
+            <input type="text" name="reais" id="reais"required><br>
+            <button type="submit" name="acao" value="add">Adicionar</button>
+        </form>
+    </div>
+</body>
+</html>

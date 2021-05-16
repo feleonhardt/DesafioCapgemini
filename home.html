@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de anúncios</title>
+</head>
+<body>
+    <div>
+        <a href="add.html">Adicionar anúncio</a><br>
+        <hr>
+        <form action="home.php" method="GET">
+            Filtrar relatórios: <br>
+            <input type="text" id="nomeCliente" name="nomeCliente" value="{nomeCliente}" placeholder="Nome do cliente"><br>
+            <input type="date" id="dataInicio" name="dataInicio" value="{dataInicio}" placeholder="Data de Início"><br>
+            <input type="date" id="dataFim" name="dataFim" value="{dataFim}" placeholder="Data de Fim"><br>
+            <button type="submit" name="acao" value="filtrar">Filtrar</button>
+            <button type="submit" name="acao" value="limpar">Limpar</button>
+        </form>
+        {lista}
+    </div>
+</body>
+</html>
