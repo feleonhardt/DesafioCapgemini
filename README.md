@@ -32,8 +32,9 @@ Abra e inicie os servidores Apache e MySQL, após inicie o SGBD e execute o arqu
 - [CSS](https://www.w3schools.com/css/)
 
 ### Autor
+---
 
 **Felipe André Leonhardt**
 
-[![Twitter Badge](https://img.shields.io/badge/-@feleonhardt-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/feleonhardt)](https://twitter.com/feleonhardt) [![Linkedin Badge](https://img.shields.io/badge/-Felipe-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/feleonhardt/)](https://www.linkedin.com/in/feleonhardt/) 
+[![Twitter Badge](https://img.shields.io/badge/-@feleonhardt-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/feleonhardt)](https://twitter.com/feleonhardt) [![Linkedin Badge](https://img.shields.io/badge/-Felipe-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/felipe-andr%C3%A9-leonhardt-527ab71a5/)](https://www.linkedin.com/in/felipe-andr%C3%A9-leonhardt-527ab71a5/) 
 [![Gmail Badge](https://img.shields.io/badge/-cabanha.fl@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:cabanha.fl@gmail.com)](mailto:cabanha.fl@gmail.com)
