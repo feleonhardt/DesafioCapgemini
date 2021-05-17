@@ -23,7 +23,7 @@ git clone <https://github.com/feleonhardt/DesafioCapgemini.git>
 ```
 ### Rodando o projeto
 
-Abra e inicie os servidores Apache e MySQL, após inicie o SGBD e execute o arquivo **DesafioCapgemini.sql**, presente na pasta *assets/conf*. Após abra o navegador de sua preferência e digite o caminho *http://localhost/DesafioCapgemini/home.php*.
+Abra e inicie os servidores Apache e MySQL, após inicie o SGBD e execute o arquivo **DesafioCapgemini.sql**, presente na pasta *assets/conf*. Após abra o navegador de sua preferência e digite o caminho *http://localhost/DesafioCapgemini/home.php*. Irá abrir na página de listagem de anúncios, para iniciar no topo da página existe a opção de adicionar um anúncio, ao abrir a página pode-se preencher os campos conforme solicitado e **Adicionar** um novo anúncio ou **Cancelar** e voltar para a tela de listagem. Na tela de listagem é possível filtar os anúncios pelo *Nome do cliente*, *Data de Inicío* e *Data de Término* (Observação: quando o período do filtro for entre o período cadastrado no anúncio, o relatório será gerado conforme o período definido no filtro de busca). Também a possível **Excluir** o anúncio clicando na opção *Excluir* na parte inferior do mesmo.
 
 ### Tecnologias utilizadas
 
