@@ -179,8 +179,6 @@ function apresentaLista($cliente, $dataInicio, $dataFim){
         }else {
             $data_fim = new DateTime($dados['dataFim']);
         }
-        // $data_inicio = new DateTime($dados['dataInicio']);
-        // $data_fim = new DateTime($dados['dataFim']);
         $dateInterval = $data_inicio->diff($data_fim);
         $dias = $dateInterval->days;
 
@@ -202,11 +200,6 @@ function apresentaLista($cliente, $dataInicio, $dataFim){
         $lista .= "Compartilhamento(s): ".number_format($vetDados['compartilhamento'],0,",",".")."<br>";
         $lista .= "Visualização(ões): ".number_format($vetDados['visualizaçao'],0,",",".")."<br><br>";
         $lista .= "<a href='home.php?acao=excluir&id=".$dados['id']."'>Excluir</a><br>";
-
-        // $lista .= ": ".$dados[''];
-        // $lista .= "";
-
-
         $lista .= "</div>";
         $lista .= "<hr>";
     }
