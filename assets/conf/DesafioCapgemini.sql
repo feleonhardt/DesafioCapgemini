@@ -8,6 +8,3 @@ dataInicio date not null,
 dataFim date not null,
 reais double not null
 );
-
-insert into anuncios(nomeAnuncio, nomeCliente, dataInicio, dataFim, reais) values('Coca-cola', 'Felipe', '2021-05-15', '2021-05-30', 100);
-select * from anuncios;

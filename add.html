@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Adicionar Anúncio</title>
 </head>
 <body>
-    <div>
-        <a href="home.php">Voltar</a>
+    <a href="home.php">Voltar</a>
+    <div class="center">
         <h1>Adicionar Anúncio</h1>
         <form action="home.php" method="post">
             Nome do Anúncio:
@@ -20,7 +21,7 @@
             Data de Fim:
             <input type="date" name="dataFim" id="dataFim" required><br>
             Investimento por dia (R$):
-            <input type="text" name="reais" id="reais"required><br>
+            <input type="text" name="reais" id="reais" placeholder="Ex.: 11.50" required><br><br>
             <button type="submit" name="acao" value="add">Adicionar</button>
         </form>
     </div>

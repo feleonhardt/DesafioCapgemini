@@ -116,11 +116,37 @@ function apresentaLista($cliente, $dataInicio, $dataFim){
             ':nomeCliente' => $cliente."%",
             ':dataInicio' => $dataInicio
         );
-    }else if ($cliente != '' and $dataInicio != '' and $dataFim != '') {
-        $sqlDados = "SELECT * FROM anuncios WHERE nomeCliente LIKE :nomeCliente AND (dataInicio >= :dataInicio and dataFim <= :dataFim) OR (dataInicio < :dataInicio and dataFim <= :dataFim) OR (dataInicio >= :dataInicio and dataFim > :dataFim)  ORDER BY dataInicio;";
+    }else if ($cliente != '' and $dataInicio == '' and $dataFim != '') {
+        $sqlDados = "SELECT * FROM anuncios WHERE nomeCliente LIKE :nomeCliente AND dataFim <= :dataFim ORDER BY dataInicio;";
         $stmtDados = preparaComando($sqlDados);
         $bindDados = array (
             ':nomeCliente' => $cliente."%",
+            ':dataFim' => $dataFim
+        );
+    }else if ($cliente != '' and $dataInicio != '' and $dataFim != '') {
+        $sqlDados = "SELECT * FROM anuncios WHERE nomeCliente LIKE :nomeCliente AND (dataInicio >= :dataInicio and dataFim <= :dataFim) OR (dataInicio < :dataInicio and dataFim <= :dataFim) OR (dataInicio >= :dataInicio and dataFim > :dataFim) OR (dataInicio < :dataInicio and dataFim > :dataFim) ORDER BY dataInicio;";
+        $stmtDados = preparaComando($sqlDados);
+        $bindDados = array (
+            ':nomeCliente' => $cliente."%",
+            ':dataInicio' => $dataInicio,
+            ':dataFim' => $dataFim
+        );
+    }else if ($cliente == '' and $dataInicio != '' and $dataFim == '') {
+        $sqlDados = "SELECT * FROM anuncios WHERE dataInicio >= :dataInicio ORDER BY dataInicio;";
+        $stmtDados = preparaComando($sqlDados);
+        $bindDados = array (
+            ':dataInicio' => $dataInicio
+        );
+    }else if ($cliente == '' and $dataInicio == '' and $dataFim != '') {
+        $sqlDados = "SELECT * FROM anuncios WHERE dataFim <= :dataFim ORDER BY dataInicio;";
+        $stmtDados = preparaComando($sqlDados);
+        $bindDados = array (
+            ':dataFim' => $dataFim
+        );
+    }else if ($cliente == '' and $dataInicio != '' and $dataFim != '') {
+        $sqlDados = "SELECT * FROM anuncios WHERE (dataInicio >= :dataInicio and dataFim <= :dataFim) OR (dataInicio < :dataInicio and dataFim <= :dataFim) OR (dataInicio >= :dataInicio and dataFim > :dataFim) OR (dataInicio < :dataInicio and dataFim > :dataFim) ORDER BY dataInicio;";
+        $stmtDados = preparaComando($sqlDados);
+        $bindDados = array (
             ':dataInicio' => $dataInicio,
             ':dataFim' => $dataFim
         );
@@ -131,25 +157,51 @@ function apresentaLista($cliente, $dataInicio, $dataFim){
     }
     $stmtDados = bindExecute($stmtDados, $bindDados);
     while ($dados = $stmtDados->fetch(PDO::FETCH_ASSOC)) {
+        if ($dataInicio != '') {
+            if ($dataInicio > $dados['dataInicio']) {
+                $data_inicio = new DateTime($dataInicio);
+            }else if ($dataInicio < $dados['dataInicio']) {
+                $data_inicio = new DateTime($dados['dataInicio']);
+            }else {
+                $data_inicio = new DateTime($dataInicio);
+            } 
+        }else {
+            $data_inicio = new DateTime($dados['dataInicio']);
+        }
+        if ($dataFim != '') {
+            if ($dataFim > $dados['dataFim']) {
+                $data_fim = new DateTime($dados['dataFim']);
+            }else if ($dataFim < $dados['dataFim']) {
+                $data_fim = new DateTime($dataFim);
+            }else {
+                $data_fim = new DateTime($dataFim);
+            }
+        }else {
+            $data_fim = new DateTime($dados['dataFim']);
+        }
+        // $data_inicio = new DateTime($dados['dataInicio']);
+        // $data_fim = new DateTime($dados['dataFim']);
+        $dateInterval = $data_inicio->diff($data_fim);
+        $dias = $dateInterval->days;
+
         $lista .= "<hr>";
         $lista .= "<div>";
         $lista .= "<h3>".$dados['nomeAnuncio']."</h3>";
         $lista .= "Cliente: ".$dados['nomeCliente']."<br>";
-        $lista .= "Início: ".formatData($dados['dataInicio'])."<br>";
-        $lista .= "Fim: ".formatData($dados['dataFim'])."<br>";
-        $lista .= "Valor investido: R$ ".number_format($dados['reais'],2,",",".")."<br>";
-        $lista .= "<br><br>Relatótio:<br>";
+        $lista .= "Data de início: ".formatData($dados['dataInicio'])."<br>";
+        $lista .= "Data de término: ".formatData($dados['dataFim'])."<br>";
+        $lista .= "Valor investido por dia: R$ ".number_format($dados['reais'],2,",",".")."<br>";
 
-        $data_inicio = new DateTime($dados['dataInicio']);
-        $data_fim = new DateTime($dados['dataFim']);
-        $dateInterval = $data_inicio->diff($data_fim);
-        $dias = $dateInterval->days;
+        $lista .= "<br><h3>Relatório:</h3>";
 
         $vetDados = calculaQnt($dias, $dados['reais']);
+
+        $lista .= "De ".formatData($dados['dataInicio'])." até ".formatData($dados['dataFim'])." - ".$dias." dia(s)<br>";
         $lista .= "Valor total: R$ ".number_format($vetDados['valorTotal'],2,",",".")."<br>";
         $lista .= "Clique(s): ".number_format($vetDados['clique'],0,",",".")."<br>";
         $lista .= "Compartilhamento(s): ".number_format($vetDados['compartilhamento'],0,",",".")."<br>";
-        $lista .= "Visualização(ões): ".number_format($vetDados['visualizaçao'],0,",",".")."<br>";
+        $lista .= "Visualização(ões): ".number_format($vetDados['visualizaçao'],0,",",".")."<br><br>";
+        $lista .= "<a href='home.php?acao=excluir&id=".$dados['id']."'>Excluir</a><br>";
 
         // $lista .= ": ".$dados[''];
         // $lista .= "";
